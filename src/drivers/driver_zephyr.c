@@ -2754,6 +2754,7 @@ out:
 	if (if_ctx) {
 		if_ctx->beacon_set = false;
 		if_ctx->ap_probe_req_listen = false;
+		if_ctx->probe_req_set = false;
 	}
 	return ret;
 }
@@ -2785,10 +2786,10 @@ int wpa_drv_zep_deinit_ap(void *priv)
 		goto out;
 	}
 	if_ctx->ap_probe_req_listen = false;
-
 out:
 	if (if_ctx) {
 		if_ctx->beacon_set = false;
+		if_ctx->probe_req_set = false;
 	}
 	return ret;
 }

@@ -229,7 +229,7 @@ int zephyr_hostapd_ctrl_zephyr_cmd(struct wpa_ctrl *ctrl, int argc, const char *
 int zephyr_hostapd_cli_cmd_v(struct wpa_ctrl *ctrl, const char *fmt, ...)
 {
 	va_list cmd_args;
-	int argc;
+	size_t argc;
 	const char *argv[MAX_ARGS];
 	char cmd[MAX_CMD_SIZE];
 
@@ -239,9 +239,9 @@ int zephyr_hostapd_cli_cmd_v(struct wpa_ctrl *ctrl, const char *fmt, ...)
 
 	(void)hostapd_make_argv(&argc, &argv[0], cmd, MAX_ARGS);
 
-	wpa_printf(MSG_DEBUG, "Calling hostapd_cli: %s, argc: %d", cmd, argc);
-	for (int i = 0; i < argc; i++)
-		wpa_printf(MSG_DEBUG, "argv[%d]: %s", i, argv[i]);
+	wpa_printf(MSG_DEBUG, "Calling hostapd_cli: %s, argc: %zu", cmd, argc);
+	for (size_t i = 0; i < argc; i++)
+		wpa_printf(MSG_DEBUG, "argv[%zu]: %s", i, argv[i]);
 
 	return zephyr_hostapd_ctrl_zephyr_cmd(ctrl, argc, argv);
 }

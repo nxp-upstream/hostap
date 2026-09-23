@@ -1038,7 +1038,9 @@ static int wpa_drv_register_frame(struct zep_drv_if_ctx *if_ctx,
 
 	dev_ops = get_dev_ops(if_ctx->dev_ctx);
 	if (!dev_ops || !dev_ops->register_frame) {
-		wpa_printf(MSG_ERROR, "%s: register_frame op not supported", __func__);
+		/* Return success - this op is optional for drivers that
+		 * receive mgmt frames through other mechanisms. */
+		wpa_printf(MSG_DEBUG, "%s: register_frame op not supported", __func__);
 		goto out;
 	}
 

@@ -4370,7 +4370,7 @@ pfs_fail:
 	if (wpa_s->disable_mscs_support)
 		goto mscs_end;
 #endif /* CONFIG_TESTING_OPTIONS */
-#ifndef CONFIG_NO_RRM
+#if !defined(CONFIG_NO_RRM) && !defined(CONFIG_NO_ROBUST_AV)
 	if (wpa_bss_ext_capab(bss, WLAN_EXT_CAPAB_MSCS) &&
 	    wpa_s->robust_av.valid_config) {
 		struct wpabuf *mscs_ie;
